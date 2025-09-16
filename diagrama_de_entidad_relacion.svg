@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="144 30 799 484" width="655px" height="454px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <line x1="680" y1="399" x2="670" y2="399" style="stroke:#333;stroke-width:1;"/>
+   <line x1="562" y1="256" x2="552" y2="256" style="stroke:#333;stroke-width:1;"/>
+   <line x1="670" y1="399" x2="562" y2="256" style="stroke:#333;stroke-width:1;"/>
+   <line x1="672.5" y1="399" x2="676.03553390593" y2="402.53553390593" style="stroke:#333;stroke-width:2;"/>
+   <line x1="672.5" y1="399" x2="676.03553390593" y2="395.46446609407" style="stroke:#333;stroke-width:2;"/>
+   <line x1="557" y1="256" x2="560.53553390593" y2="259.53553390593" style="stroke:#333;stroke-width:2;"/>
+   <line x1="557" y1="256" x2="560.53553390593" y2="252.46446609407" style="stroke:#333;stroke-width:2;"/>
+   <line x1="429" y1="276" x2="419" y2="276" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="326" y1="75" x2="316" y2="75" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="419" y1="276" x2="326" y2="75" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="421.5" y1="276" x2="425.03553390593" y2="279.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="421.5" y1="276" x2="425.03553390593" y2="272.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="321" y1="75" x2="324.53553390593" y2="78.535533905933" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="321" y1="75" x2="324.53553390593" y2="71.464466094067" style="stroke:#0bf;stroke-width:2;"/>
+   <rect width="104" height="20" x="680" y="349" style="fill:#007;stroke:black;"/>
+   <text width="104" height="20" x="685" y="363" style="fill:#fff;" font-family="Arial" font-size="16px"> Capitulos</text>
+   <rect width="104" height="20" x="680" y="369" style="fill:#aea;stroke:black;"/>
+   <text width="104" height="20" x="685" y="383" style="fill:black;" font-family="Arial" font-size="16px">id_capitulo</text>
+   <rect width="104" height="20" x="680" y="389" style="fill:none;stroke:black;"/>
+   <text width="104" height="20" x="685" y="403" style="fill:black;" font-family="Arial" font-size="16px">id_temporada</text>
+   <rect width="104" height="20" x="680" y="409" style="fill:none;stroke:black;"/>
+   <text width="104" height="20" x="685" y="423" style="fill:black;" font-family="Arial" font-size="16px">num_capitulo</text>
+   <rect width="104" height="20" x="680" y="429" style="fill:none;stroke:black;"/>
+   <text width="104" height="20" x="685" y="443" style="fill:black;" font-family="Arial" font-size="16px">duracion</text>
+   <rect width="104" height="20" x="680" y="449" style="fill:none;stroke:black;"/>
+   <text width="104" height="20" x="685" y="463" style="fill:black;" font-family="Arial" font-size="16px">descripcion</text>
+   <rect width="157" height="20" x="159" y="45" style="fill:#007;stroke:black;"/>
+   <text width="157" height="20" x="164" y="59" style="fill:#fff;" font-family="Arial" font-size="16px"> Series</text>
+   <rect width="157" height="20" x="159" y="65" style="fill:#aea;stroke:black;"/>
+   <text width="157" height="20" x="164" y="79" style="fill:black;" font-family="Arial" font-size="16px">id_serie</text>
+   <rect width="157" height="20" x="159" y="85" style="fill:none;stroke:black;"/>
+   <text width="157" height="20" x="164" y="99" style="fill:black;" font-family="Arial" font-size="16px">titulo</text>
+   <rect width="157" height="20" x="159" y="105" style="fill:none;stroke:black;"/>
+   <text width="157" height="20" x="164" y="119" style="fill:black;" font-family="Arial" font-size="16px">genero</text>
+   <rect width="157" height="20" x="159" y="125" style="fill:none;stroke:black;"/>
+   <text width="157" height="20" x="164" y="139" style="fill:black;" font-family="Arial" font-size="16px">cant. de temporadas</text>
+   <rect width="157" height="20" x="159" y="145" style="fill:none;stroke:black;"/>
+   <text width="157" height="20" x="164" y="159" style="fill:black;" font-family="Arial" font-size="16px">sinopsis</text>
+   <rect width="157" height="20" x="159" y="165" style="fill:none;stroke:black;"/>
+   <text width="157" height="20" x="164" y="179" style="fill:black;" font-family="Arial" font-size="16px">clasificación</text>
+   <rect width="123" height="20" x="429" y="226" style="fill:#007;stroke:black;"/>
+   <text width="123" height="20" x="434" y="240" style="fill:#fff;" font-family="Arial" font-size="16px"> Temporadas</text>
+   <rect width="123" height="20" x="429" y="246" style="fill:#aea;stroke:black;"/>
+   <text width="123" height="20" x="434" y="260" style="fill:black;" font-family="Arial" font-size="16px">id_temporada</text>
+   <rect width="123" height="20" x="429" y="266" style="fill:none;stroke:black;"/>
+   <text width="123" height="20" x="434" y="280" style="fill:black;" font-family="Arial" font-size="16px">id_serie</text>
+   <rect width="123" height="20" x="429" y="286" style="fill:none;stroke:black;"/>
+   <text width="123" height="20" x="434" y="300" style="fill:black;" font-family="Arial" font-size="16px">num_temporada</text>
+   <rect width="123" height="20" x="429" y="306" style="fill:none;stroke:black;"/>
+   <text width="123" height="20" x="434" y="320" style="fill:black;" font-family="Arial" font-size="16px">cant_capitulos</text>
+</svg>
