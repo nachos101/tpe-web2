@@ -5,3 +5,5 @@ Niyen, Sofia Aylen - sniyen@alumnos.exa.unicen.edu.ar
 
 Tematica: Plataforma de streaming.
 En esta plataforma el usuario podra ver un catalogo de series, cada una con sus respectivas temporadas y capitulos.
+
+![diagrama_de_entidad_relacion.png](/diagrama_de_entidad_relacion.png)
