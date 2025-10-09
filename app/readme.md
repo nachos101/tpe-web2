@@ -1,0 +1,2 @@
+los archivos .gitkeep son 'placeholders' es decir, se crean para poder mantener la estructura de la carpeta (en nuestro caso la que contiene la MVC).
+De esta manera git reconoce la carpeta y puedo pushearla.
