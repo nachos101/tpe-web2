@@ -13,11 +13,16 @@ class SeriesController{
 
     public function showSeries(){
         //pido las series al modelo
-        $series = $this->model->getAll();
+        $series = $this->model->getAllSeries();
 
         //envio las series pedidas a la vista
         $this->view->showSeries($series);
 
+    }
+
+    public function showSerieByGenre($genre){
+        $serie = $this->model->getSerieByGenre($genre);
+        $this->view->showSeriebyGenre($serie);
     }
 
 }

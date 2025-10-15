@@ -9,21 +9,25 @@ class SeriesModel{
     }
 
     function getSerie ($id){
+        $query = $this->db->prepare('SELECT * FROM series WHERE id=?');
+        $query->execute([$id]);
+        $serie = $query->fetch(PDO::FETCH_OBJ);
 
+        return $serie;
     }
 
     function getAllSeries (){
         //preparo y ejecuto la consulta.
         $query = $this->db->prepare('SELECT * FROM series');
         $query->execute();
-        $series = $query->fetchAll(PDO::FETCH_OBJECT);
+        $series = $query->fetchAll(PDO::FETCH_OBJ);
 
         return $series;
     }
 
-    function getSerieById ($id){
-        $query = $this->db->prepare('SELECT * FROM series WHERE id=?');
-        $query->execute([$id]);
+    function getSerieByGenre ($genre){
+        $query = $this->db->prepare('SELECT * FROM series WHERE genero LIKE ?');
+        $query->execute(['%'.$genre.'%']);
         $serie = $query->fetch(PDO::FETCH_OBJ);
         
         return $serie;

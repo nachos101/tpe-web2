@@ -1,6 +1,4 @@
 <?php
-echo 'entre al index';
-
 function showIndex(){
-    require_once './templates/body_home.phtml';
+    require_once 'templates/layout/body_home.phtml';
 }

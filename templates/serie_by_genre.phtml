@@ -1,0 +1,15 @@
+<?php require_once 'layout/header.phtml' ?>
+
+<section class="serie_genre">
+    <h4>Genero: <?php echo $serie->genero; ?> </h4></br>
+
+    <?php
+            echo "Serie " . $serie->titulo . '</br>';
+            echo "Cant temporadas " . $serie->cant_temporadas . '</br>';
+            echo "Sinopsis " . $serie->sinopsis . '</br>';
+            echo "Clasificacion +" . $serie->clasificación . '</br>';
+    ?>
+    
+</section>
+
+<?php require_once 'layout/footer.phtml' ?>
