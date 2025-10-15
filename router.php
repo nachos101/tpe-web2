@@ -36,6 +36,11 @@ switch ($params[0]) {
         $genre = $params[1];
         $controller->showSerieByGenre($genre);
         break;
+    case 'temporadas':
+        $controller = new TemporadasController();
+        $serie = $params[1];
+        $controller->showAllTemporadas($serie);
+        break;
     default:
         echo 'error 404 page not found';
         break;
