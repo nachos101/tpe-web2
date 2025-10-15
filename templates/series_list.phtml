@@ -1,0 +1,11 @@
+<section class="show_series">
+    <?php
+        foreach($series as $s){
+            echo "Serie " . $s->titulo . '</br>';
+            echo "Genero " . $s->genero . '</br>';
+            echo "Cant temporadas " . $s->cant_temporadas . '</br>';
+            echo "Sinopsis " . $s->sinopsis . '</br>';
+            echo "Clasificacion " . $s->clasificacion . '</br>';
+        }
+    ?>
+</section>

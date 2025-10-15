@@ -1,4 +1,17 @@
 <?php
+require_once 'index.php';
+require_once 'app/controllers/series.controller.php';
+require_once 'app/controllers/temporadas.controller.php';
+
+define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+
+if (!empty($_GET['action'])){
+    $action = $_GET['action'];
+} else {
+    $action = 'index';
+}
+
+$params = explode('/', $action);
 
 /*  TABLA DE RUTEO
 - listar (series - temporadas)
@@ -6,6 +19,21 @@
 - ver info x serie
 - login
 ---funciones de admin---
--listar 
+-listar
 -CRUD
 */
+
+switch ($params[0]) {
+    case 'index':
+        showIndex();
+        break;
+    case 'list_series':
+        $controller = new SeriesController();
+        $controller->showSeries();
+        break;
+    default:
+        echo 'error 404 page not found';
+        break;
+}
+
+?>
