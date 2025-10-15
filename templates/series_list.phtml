@@ -3,14 +3,15 @@
 <section class="show_series">
     <?php
         foreach($series as $s){
-            echo "Serie <a href=temporadas>" . $s->titulo . '</a></br>';
+            echo "Serie <a href=temporadas/".$s->id_serie .">". $s->titulo . '</a></br>';
             echo "Genero " . $s->genero . '</br>';
             echo "Cant temporadas " . $s->cant_temporadas . '</br>';
             echo "Sinopsis " . $s->sinopsis . '</br>';
             echo "Clasificacion +" . $s->clasificación . '</br>';
+            echo '<a href=temporadas/' . $s->id_serie . '>VER AHORA</a></br>';
         }
     ?>
-
+    
 </section>
 
 <?php require_once 'layout/footer.phtml' ?>
