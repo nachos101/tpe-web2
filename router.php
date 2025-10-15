@@ -1,8 +1,8 @@
 <?php
 require_once 'index.php';
 require_once 'app/controllers/series.controller.php';
-/* require_once 'app/controllers/temporadas.controller.php';
- */
+require_once 'app/controllers/temporadas.controller.php';
+
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
 if (!empty($_GET['action'])){

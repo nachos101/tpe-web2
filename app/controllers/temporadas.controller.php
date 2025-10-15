@@ -1,21 +1,21 @@
 <?php
-    require_once './models/temporadas.model.php';
-    require_once './views/temporadas.view.php';
+    require_once './app/models/temporadas.model.php';
+    require_once './app/views/temporadas.view.php';
     class TemporadasController {
      
-        function __construct(){
+        public function __construct(){
             //inicio Modelo y Vista
-            $this->Model = new ModelTemporadas;
-            $this->View = new ViewTemporadas;
+            $this->Model = new ModelTemporadas();
+            $this->View = new TemporadasView();
         }
         
-        function showAllTemporadas($idSerie){
+        public function showAllTemporadas($idSerie){
             //traigo las temporadas de la serie y con la View llamo al metodo que las muestra
             $array = $this->Model->getTemporadas($idSerie);
             $this->View->showTemporadas($array);
         }
 
-        function showAnyTemporada($idSerie,$id){
+        public function showAnyTemporada($idSerie,$id){
             //hago lo mismo que en showAllTemporadas pero aca solo traigo una y muestro una
             $temporada = $this->Model->getTemporada($idSerie,$id);
             $this->View->showUnaTemporada($temporada);
