@@ -2,8 +2,10 @@
 
 <div>
     <?php
+        $n = 1;
         foreach ($temporadas as $temporada) {
-            echo "Temporada N°".$temporada->id_temporada." ";
+            echo "Temporada N° <a href='temporadas/$temporada->id_serie/$temporada->id_temporada'>".$n."</a></br>";
+            $n++;   
         }
     ?>
     <a href="list_series">VOLVER</a>

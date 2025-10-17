@@ -1,6 +1,6 @@
 <?php
     require_once './app/models/temporadas.model.php';
-    require_once './app/views/temporadas.view.php';
+    require_once './app/views/temporadas.view.phtml';
     class TemporadasController {
      
         public function __construct(){
@@ -15,9 +15,9 @@
             $this->View->showTemporadas($array);
         }
 
-        public function showAnyTemporada($idSerie,$id){
+        public function showAnyTemporada($id){
             //hago lo mismo que en showAllTemporadas pero aca solo traigo una y muestro una
-            $temporada = $this->Model->getTemporada($idSerie,$id);
+            $temporada = $this->Model->getTemporada($id);
             $this->View->showUnaTemporada($temporada);
         }
 

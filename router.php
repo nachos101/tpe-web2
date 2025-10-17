@@ -39,11 +39,21 @@ switch ($params[0]) {
     case 'temporadas':
         $controller = new TemporadasController();
         $serie = $params[1];
-        $controller->showAllTemporadas($serie);
+        if (isset($params[2])){
+            $id = $params[2];
+            $controller->showAnyTemporada($id);
+        } else {
+            $controller->showAllTemporadas($serie);
+        }
+
         break;
     case 'login':
         $controller = new AuthController();
         $controller->showLogin();
+        break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
         break;
     default:
         echo 'error 404 page not found';

@@ -15,9 +15,9 @@
         return $temporadas;
     }
 
-    public function getTemporada($idSerie,$id){
-        $query = $this->db->prepare('SELECT * FROM temporadas WHERE  id_serie = ? AND id_temporada = ?');
-        $query->execute([$idSerie,$id]);
+    public function getTemporada($id){
+        $query = $this->db->prepare('SELECT * FROM temporadas WHERE id_temporada = ?');
+        $query->execute([$id]);
         //cargo todas las temporadas en una variable
         $temporada = $query->fetch(PDO::FETCH_OBJ);
         return $temporada;
