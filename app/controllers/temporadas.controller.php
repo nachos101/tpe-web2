@@ -1,6 +1,6 @@
 <?php
     require_once './app/models/temporadas.model.php';
-    require_once './app/views/temporadas.view.php';
+    require_once './app/views/temporadas.view.phtml';
     class TemporadasController {
      
         public function __construct(){

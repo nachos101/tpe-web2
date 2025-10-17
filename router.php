@@ -45,6 +45,10 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->showLogin();
         break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
+        break;
     default:
         echo 'error 404 page not found';
         break;
