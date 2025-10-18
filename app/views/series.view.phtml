@@ -10,6 +10,10 @@ class SeriesView {
         require_once '././templates/series_list.phtml';
     }
 
+    function showSerieByID($serie,$temporadas){
+        require_once '././templates/lista_temporadas.phtml';
+    }
+
     function showSeriebyGenre($serie){
         require_once '././templates/serie_by_genre.phtml';
     }

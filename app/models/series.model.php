@@ -9,11 +9,14 @@ class SeriesModel{
     }
 
     function getSerie ($id){
-        $query = $this->db->prepare('SELECT * FROM series WHERE id=?');
+        
+        $query = $this->db->prepare('SELECT * FROM series WHERE id_serie=?');
+        
         $query->execute([$id]);
         $serie = $query->fetch(PDO::FETCH_OBJ);
-
+        
         return $serie;
+
     }
 
     function getAllSeries (){

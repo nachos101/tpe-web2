@@ -3,8 +3,12 @@
 <div>
     <?php
         $n = 1;
+        echo "Genero " . $serie->genero . '</br>';
+            echo "Cant temporadas " . $serie->cant_temporadas . '</br>';
+            echo "Sinopsis " . $serie->sinopsis . '</br>';
+            echo "Clasificacion +" . $serie->clasificación . '</br>';
         foreach ($temporadas as $temporada) {
-            echo "Temporada N° <a href='temporadas/$temporada->id_serie/$temporada->id_temporada'>".$n."</a></br>";
+            echo "Temporada N° <a href='temporadas/$temporada->id_temporada'>".$n."</a></br>";
             $n++;   
         }
     ?>

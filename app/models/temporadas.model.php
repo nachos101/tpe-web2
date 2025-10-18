@@ -15,6 +15,15 @@
         return $temporadas;
     }
 
+       function getAllTemporadas (){
+        //preparo y ejecuto la consulta.
+        $query = $this->db->prepare('SELECT * FROM temporadas');
+        $query->execute();
+        $temporadas = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $temporadas;
+    }
+
     public function getTemporada($id){
         $query = $this->db->prepare('SELECT * FROM temporadas WHERE id_temporada = ?');
         $query->execute([$id]);

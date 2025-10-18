@@ -1,8 +1,11 @@
 <?php
 require_once 'index.php';
-require_once 'app/controllers/series.controller.php';
-require_once 'app/controllers/temporadas.controller.php';
-require_once 'app/controllers/auth.controller.php';
+require_once './app/controllers/series.controller.php';
+require_once './app/controllers/temporadas.controller.php';
+require_once './app/controllers/auth.controller.php';
+require_once './app/middlewares/guard.middleware.php';
+require_once './app/middlewares/session.middleware.php';
+session_start();
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
 if (!empty($_GET['action'])){
@@ -22,6 +25,9 @@ $params = explode('/', $action);
 -listar
 -CRUD
 */
+$request = new StdClass();
+$request = (new SessionMiddleware())->run($request);
+
 
 switch ($params[0]) {
     case 'index':
@@ -29,7 +35,13 @@ switch ($params[0]) {
         break;
     case 'list_series':
         $controller = new SeriesController();
-        $controller->showSeries();
+        if (isset($params[1])){
+            $idSerie = $params[1];
+            $controller->showSerieByID($idSerie);
+        }
+        else{
+            $controller->showSeries();
+        }
         break;
     case 'list_by_genre':
         $controller = new SeriesController();
@@ -38,22 +50,44 @@ switch ($params[0]) {
         break;
     case 'temporadas':
         $controller = new TemporadasController();
-        $serie = $params[1];
-        if (isset($params[2])){
-            $id = $params[2];
-            $controller->showAnyTemporada($id);
-        } else {
-            $controller->showAllTemporadas($serie);
+        if (isset($params[1])){
+            $id = $params[1];
+            $controller->showTemporadaByID($id);
         }
-
+        else{
+            $controller->showTemporadas();
+        }             
         break;
+        case 'nueva':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TaskController();
+        $controller->addTask($request);
+        break;
+    case 'eliminar':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TaskController();
+        $request->id = $params[1];
+        $controller->removeTask($request);
+        break;
+    case 'finalizar':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TaskController();
+        $request->id = $params[1];
+        $controller->finalizeTask($request);
+        break;
+
     case 'login':
         $controller = new AuthController();
-        $controller->showLogin();
+        $controller->showLogin($request);
         break;
+    case 'do_login':
+        $controller = new AuthController();
+        $controller->doLogin($request);
+        break;
+
     case 'logout':
         $controller = new AuthController();
-        $controller->logout();
+        $controller->logout($request);
         break;
     default:
         echo 'error 404 page not found';

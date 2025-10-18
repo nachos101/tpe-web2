@@ -1,0 +1,14 @@
+<?php require_once 'layout/header.phtml' ?>
+
+<div>
+    <?php
+    $n= 1;
+        foreach ($temporadas as $temporada) {
+            echo "Temporada N° <a href='temporadas/$temporada->id_temporada'>".$n."</a></br>";
+            $n++;   
+        }
+    ?>
+    <a href="index">VOLVER</a>
+</div>
+
+<?php require_once 'layout/footer.phtml' ?>
