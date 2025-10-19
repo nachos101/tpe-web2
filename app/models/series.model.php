@@ -36,4 +36,9 @@ class SeriesModel{
         return $serie;
     }
 
+    function insertSerie (){
+
+    }
+
+
 }

@@ -6,7 +6,7 @@
             if(isset($_SESSION['user_id'])){
                 $request->user = new StdClass();
                 $request->user->id = $_SESSION['user_id'];
-                $request->user->username = $_SESSION['username'];
+                $request->user->username = $_SESSION['user_name'];
             } else {
                 $request->user = null;
             }

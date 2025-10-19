@@ -17,4 +17,8 @@ class SeriesView {
     function showSeriebyGenre($serie){
         require_once '././templates/serie_by_genre.phtml';
     }
+
+    function showError($error){
+        echo "<h3>$error</h3>";
+    }
 }

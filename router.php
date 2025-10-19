@@ -1,5 +1,5 @@
 <?php
-require_once 'index.php';
+require_once './app/controllers/home.controller.php';
 require_once './app/controllers/series.controller.php';
 require_once './app/controllers/temporadas.controller.php';
 require_once './app/controllers/auth.controller.php';
@@ -11,7 +11,7 @@ define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"]
 if (!empty($_GET['action'])){
     $action = $_GET['action'];
 } else {
-    $action = 'index';
+    $action = 'home';
 }
 
 $params = explode('/', $action);
@@ -30,9 +30,16 @@ $request = (new SessionMiddleware())->run($request);
 
 
 switch ($params[0]) {
-    case 'index':
-        showIndex();
+/* manejo de pagina principal */
+    case 'home':
+        $controller = new HomeController();
+        $controller->showHome();
         break;
+    case 'about':
+    $controller = new HomeController();
+    $controller->about();
+        break;
+/* listado de series y temporadas */
     case 'list_series':
         $controller = new SeriesController();
         if (isset($params[1])){
@@ -56,9 +63,10 @@ switch ($params[0]) {
         }
         else{
             $controller->showTemporadas();
-        }             
+        }
         break;
-        case 'nueva':
+/* tasks? */
+    case 'nueva':
         $request = (new GuardMiddleware())->run($request);
         $controller = new TaskController();
         $controller->addTask($request);
@@ -75,7 +83,23 @@ switch ($params[0]) {
         $request->id = $params[1];
         $controller->finalizeTask($request);
         break;
-
+/* ABM series */
+    case 'addSerie':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new SeriesController();
+        $controller->addSerie();
+        break;
+    case 'editSerie':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new SeriesController();
+        $controller->editSerie();
+        break;
+    case 'deleteSerie':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new SeriesController();
+        $controller->deleteSerie();
+        break;
+/* Manejo de sesion */
     case 'login':
         $controller = new AuthController();
         $controller->showLogin($request);
@@ -84,8 +108,8 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->doLogin($request);
         break;
-
     case 'logout':
+        $request = (new GuardMiddleware())->run(request);
         $controller = new AuthController();
         $controller->logout($request);
         break;

@@ -3,9 +3,8 @@
 <section class="show_series">
     <?php
         foreach($series as $s){
-            
             echo "<ul><li>";
-            echo "Serie <a href=list_series/".$s->id_serie .">". $s->titulo . '</a></br>';
+            echo "<a href=list_series/".$s->id_serie .">". $s->titulo . '</a></br>';
             echo "</li></ul>";
         }
     ?>
