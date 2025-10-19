@@ -14,25 +14,25 @@ class SeriesController{
         $this->temporadasModel = new ModelTemporadas();
     }
 
-    public function showSeries(){
+    public function showSeries($request){
         //pido las series al modelo
         $series = $this->model->getAllSeries();
 
         //envio las series pedidas a la vista
-        $this->view->showSeries($series);
+        $this->view->showSeries($series,"", $request->user);
 
     }
 
-    public function showSerieByID($idSerie){
+    public function showSerieByID($idSerie,$request){
         $serie = $this->model->getSerie($idSerie);
         $temporada = $this->temporadasModel->getTemporadas($idSerie);
-        $this->view->showSerieByID($serie,$temporada);
+        $this->view->showSerieByID($serie,$temporada,"", $request->user);
     }
 
 
-    public function showSerieByGenre($genre){
+    public function showSerieByGenre($genre,$request){
         $serie = $this->model->getSerieByGenre($genre);
-        $this->view->showSeriebyGenre($serie);
+        $this->view->showSeriebyGenre($serie,"", $request->user);
     }
 
     function addSerie($request){

@@ -1,14 +1,14 @@
 <?php
     class TemporadasView {
-        function showTemporadas($temporadas,$serie){
+        function showTemporadas($temporadas,$serie, $error, $user){
             require_once '././templates/lista_temporadas.phtml';
         }
         
-        function showAllTemporadas($temporadas){
+        function showAllTemporadas($temporadas, $error, $user){
             require_once '././templates/temporadas.phtml';
         }
 
-        function showTemporadaByID($temporada){
+        function showTemporadaByID($temporada, $error, $user){
             require_once '././templates/temporada.phtml';
         }
     }

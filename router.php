@@ -33,36 +33,36 @@ switch ($params[0]) {
 /* manejo de pagina principal */
     case 'home':
         $controller = new HomeController();
-        $controller->showHome();
+        $controller->showHome($request);
         break;
     case 'about':
     $controller = new HomeController();
-    $controller->about();
+    $controller->about($request);
         break;
 /* listado de series y temporadas */
     case 'list_series':
         $controller = new SeriesController();
         if (isset($params[1])){
             $idSerie = $params[1];
-            $controller->showSerieByID($idSerie);
+            $controller->showSerieByID($idSerie,$request);
         }
         else{
-            $controller->showSeries();
+            $controller->showSeries($request);
         }
         break;
     case 'list_by_genre':
         $controller = new SeriesController();
         $genre = $params[1];
-        $controller->showSerieByGenre($genre);
+        $controller->showSerieByGenre($genre,$request);
         break;
     case 'temporadas':
         $controller = new TemporadasController();
         if (isset($params[1])){
             $id = $params[1];
-            $controller->showTemporadaByID($id);
+            $controller->showTemporadaByID($id,$request);
         }
         else{
-            $controller->showTemporadas();
+            $controller->showTemporadas($request);
         }
         break;
 /* tasks? */
@@ -84,6 +84,10 @@ switch ($params[0]) {
         $controller->finalizeTask($request);
         break;
 /* ABM series */
+    case 'panel_admin':
+        $controller = new HomeController();
+        $controller->ABM($request);
+        break;
     case 'addSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
@@ -109,7 +113,7 @@ switch ($params[0]) {
         $controller->doLogin($request);
         break;
     case 'logout':
-        $request = (new GuardMiddleware())->run(request);
+        $request = (new GuardMiddleware())->run($request);
         $controller = new AuthController();
         $controller->logout($request);
         break;

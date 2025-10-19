@@ -8,7 +8,7 @@ class UserModel{
     }
 
     public function get($id) {
-        $query = $this->db->prepare('SELECT * FROM usuarios WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM usuarios WHERE ID = ?');
         $query->execute([$id]);
         $user = $query->fetch(PDO::FETCH_OBJ);
 

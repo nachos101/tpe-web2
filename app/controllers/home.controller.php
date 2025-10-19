@@ -8,11 +8,15 @@ class HomeController {
         $this->view = new HomeView();
     }
 
-    public function showHome(){
-        $this->view->showHome();
+    public function showHome($request){
+        $this->view->showHome("", $request->user);
     }
 
-    public function about(){
-        $this->view->about();
+    public function about($request){
+        $this->view->about("", $request->user);
+    }
+
+    public function ABM($request){
+        $this->view->ABM("", $request->user);
     }
 }

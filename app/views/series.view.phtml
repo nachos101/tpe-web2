@@ -6,15 +6,15 @@ class SeriesView {
     hara por nosotros dado que el mismo esta vacio.
     }
  */
-    function showSeries($series){
+    function showSeries($series, $error, $user){
         require_once '././templates/series_list.phtml';
     }
 
-    function showSerieByID($serie,$temporadas){
+    function showSerieByID($serie,$temporadas, $error, $user){
         require_once '././templates/lista_temporadas.phtml';
     }
 
-    function showSeriebyGenre($serie){
+    function showSeriebyGenre($serie, $error, $user){
         require_once '././templates/serie_by_genre.phtml';
     }
 
