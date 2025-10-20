@@ -16,15 +16,6 @@ if (!empty($_GET['action'])){
 
 $params = explode('/', $action);
 
-/*  TABLA DE RUTEO
-- listar (series - temporadas)
-- navegar
-- ver info x serie
-- login
----funciones de admin---
--listar
--CRUD
-*/
 $request = new StdClass();
 $request = (new SessionMiddleware())->run($request);
 
@@ -52,7 +43,9 @@ switch ($params[0]) {
         break;
     case 'list_by_genre':
         $controller = new SeriesController();
-        $genre = $params[1];
+        if (isset($params[1])){
+            $genre = $params[1];
+        }
         $controller->showSerieByGenre($genre,$request);
         break;
     case 'temporadas':
@@ -91,17 +84,23 @@ switch ($params[0]) {
     case 'addSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
-        $controller->addSerie();
+        $controller->addSerie($request);
         break;
     case 'editSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
-        $controller->editSerie();
+        if (isset($params[1])){
+            $serieId = $params[1];
+        }
+        $controller->editSerie($serieId,$request);
         break;
     case 'deleteSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
-        $controller->deleteSerie();
+        if (isset($params[1])){
+            $serieId = $params[1];
+        }
+        $controller->deleteSerie($serieId,$request);
         break;
 /* Manejo de sesion */
     case 'login':

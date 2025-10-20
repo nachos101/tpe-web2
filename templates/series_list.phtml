@@ -1,14 +1,21 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <section class="show_series">
-    <?php
-        foreach($series as $s){
-            echo "<ul><li>";
-            echo "<a href=list_series/".$s->id_serie .">". $s->titulo . '</a></br>';
-            echo "</li></ul>";
-        }
-    ?>
-    
+    <?php if ($user): ?>
+        <a href="addSerie">NUEVA SERIE</a>
+    <?php endif; ?>
+    <?php foreach($series as $s): ?>
+        <ul>
+            <li>
+                <a href="list_series/<?= $s->id_serie ?>"><?= $s->titulo ?></a><br>
+                <img src="<?= $s->img ?>" alt="<?= $s->titulo ?>">
+                <?php if ($user): ?>
+                    <a href="editSerie/<?=$s->id_serie?>">EDITAR</a>
+                    <a href="deleteSerie/<?=$s->id_serie?>">ELIMINAR</a>
+                <?php endif; ?>
+            </li>
+        </ul>
+    <?php endforeach; ?>
 </section>
 
 <?php require_once 'layout/footer.phtml' ?>

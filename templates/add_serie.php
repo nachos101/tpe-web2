@@ -1,7 +1,7 @@
-<?= require_once 'layout/header.phtml'; ?>
+<?php require_once 'layout/header.phtml' ?>
 
 <section class="add_serie">
-    <form action="" method="post">
+    <form action="addSerie" method="post">
         <label for="title">Titulo:</label><br>
         <input type="text" name="title"><br>
 
@@ -13,8 +13,11 @@
             <option value="horror">Terror</option>
         </select><br>
 
-        <label for="synopsis">Sinopsis:</label><
-        <input type="text" name="synopsis">
+        <label for="synopsis">Sinopsis:</label>
+        <input type="text" name="synopsis"><br>
+
+        <label for="seasons">Temporadas:</label>
+        <input type="number" name="seasons" min="1"><br>
 
         <label for="age_rating">Clasificacion:</label>
         <select name="age_rating">
@@ -23,10 +26,13 @@
             <option value="14">+14</option>
             <option value="16">+16</option>
             <option value="18">+18</option>
-        </select>
+        </select><br>
+
+        <label for="img">Portada</label>
+        <input type="url" name="img"><br>
 
         <button type="submit">AGREGAR</button>
     </form>
 </section>
 
-<?= require_once 'layout/footer.phtml';?>
+<?php require_once 'layout/footer.phtml' ?>

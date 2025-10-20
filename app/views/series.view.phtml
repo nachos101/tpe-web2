@@ -18,7 +18,19 @@ class SeriesView {
         require_once '././templates/serie_by_genre.phtml';
     }
 
+    function showFormSeries(){
+        require_once '././templates/add_serie.php';
+    }
+
+    function showFormEdit($s, $user){
+        require_once '././templates/edit_serie.php';
+    }
+
     function showError($error){
-        echo "<h3>$error</h3>";
+        echo "<p>$error</p>";
+    }
+
+    function showMsg($msg){
+        echo "<p>$msg</p>";
     }
 }
