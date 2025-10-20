@@ -31,5 +31,46 @@
             $this->View->showTemporadaByID($temporada,"", $request->user);
         }
 
+        public function showMenuABM($request){
+            $temporadas = $this->Model->getAllTemporadas();
+            $this->View->showTemporadasABM($temporadas,"", $request->user);
+        }
+
+        public function addTemporada($request){
+            if (!isset($_POST['name']) || empty($_POST['name'])){
+                return $this->View->showError('falta completar el nombre de la serie',$request->user);
+            }
+                        if (!isset($_POST['num_temporada']) || empty($_POST['num_temporada'])){
+                return $this->View->showError('falta completar el numero de temporada de la serie',$request->user);
+            }
+                        if (!isset($_POST['cant_capitulos']) || empty($_POST['cant_capitulos'])){
+                return $this->View->showError('falta completar la cantidad de capitulos de la serie',$request->user);
+            }
+            $name = $_POST['name'];
+            $season = $_POST['num_temporada'];
+            $chapters = $_POST['cant_capitulos'];
+            $serie = $this->modelSerie->getSerieByName($name);
+            $idSerie = $serie->id_serie;
+            
+            
+            $add = $this->Model->insertTemporada($idSerie,$season,$chapters);
+            
+            /*if(!$add){
+                return $this->View->showError('Error la insertar tarea', $request->user);
+            }*/
+
+            header('Location: ' . BASE_URL);
+        }   
+           public function deleteTemporada($request){
+            $id = $request->id;
+            $season = $this->Model->getTemporada($id);
+            if (!$season){
+                return $this->View->showError('Error no existe esa temporada', $request->user);
+            }
+
+            $this->Model->deleteTemporada($id);
+            header('Location: ' . BASE_URL);
+           }
     }
+
 ?>

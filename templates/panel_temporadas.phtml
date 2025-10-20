@@ -1,0 +1,33 @@
+<?php require_once 'layout/header.phtml' ?>
+
+<div>
+    <table>
+        <tr>
+            <td>num_temporada</td>
+            <td>cant_capitulos</td>
+            <td>ACCION 1</td>
+            <td>ACCION 2</td>
+        </tr>
+        <?php foreach ($temporadas as $temporada): ?> 
+            <tr>
+            <td><?= $temporada->num_temporada;?></td>
+            <td><?= $temporada->cant_capitulos;?></td>
+            <td><a href="editTemporada/<?= $temporada->id_temporada?>">EDITAR</a></td>
+            <td><a href="deleteTemporada/<?=$temporada->id_temporada?>">ELIMINAR</a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <section class="add_temporada">
+    <form action="addTemporada" method="post">
+        <label>Nombre de la serie</label>
+        <input type="text" name="name"></br>
+        <label>Numero de temporada</label>
+        <input type="text" name="num_temporada"></br>    
+        <label>Cantidad de capitulos</label>
+        <input type="text" name="cant_capitulos"></br>
+        <button type="submit">AGREGAR</button>
+    </form>
+</section>
+</div>
+
+<?php require_once 'layout/footer.phtml' ?>

@@ -16,15 +16,7 @@ if (!empty($_GET['action'])){
 
 $params = explode('/', $action);
 
-/*  TABLA DE RUTEO
-- listar (series - temporadas)
-- navegar
-- ver info x serie
-- login
----funciones de admin---
--listar
--CRUD
-*/
+
 $request = new StdClass();
 $request = (new SessionMiddleware())->run($request);
 
@@ -88,6 +80,10 @@ switch ($params[0]) {
         $controller = new HomeController();
         $controller->ABM($request);
         break;
+    case 'administrarTemporadas':
+        $controller = new TemporadasController();
+        $controller->showMenuABM($request);
+        break;
     case 'addSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
@@ -96,12 +92,36 @@ switch ($params[0]) {
     case 'editSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
-        $controller->editSerie();
+        if (isset($params[1])){
+            $serieId = $params[1];
+        }
+        $controller->editSerie($serieId,$request);
         break;
     case 'deleteSerie':
         $request = (new GuardMiddleware())->run($request);
         $controller = new SeriesController();
-        $controller->deleteSerie();
+        if (isset($params[1])){
+            $serieId = $params[1];
+        }
+        $controller->deleteSerie($serieId,$request);
+        break;
+    case 'addTemporada':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TemporadasController();
+        $controller->addTemporada($request);
+        break;
+    case 'deleteTemporada':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TemporadasController();
+        $request->id = $params[1];
+        $controller->deleteTemporada($request);
+        break;
+    case 'editTemporada':
+        $request = (new GuardMiddleware())->run($request);
+        $controller = new TemporadasController();
+        $request->id = params[1];
+        var_dump("hola");
+        $controller->editTemporada($request);
         break;
 /* Manejo de sesion */
     case 'login':

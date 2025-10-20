@@ -30,7 +30,24 @@
         //cargo todas las temporadas en una variable
         $temporada = $query->fetch(PDO::FETCH_OBJ);
         return $temporada;
-    }  
+    }
+    
+    public function insertTemporada($idSerie,$season,$chapters){
+        $query = $this->db->prepare('SELECT * FROM temporadas WHERE id_serie = ? AND num_temporada = ?');
+        $query->execute([$idSerie,$season]);
+        $control = $query->fetch(PDO::FETCH_OBJ);
+        if (empty($control)){
+        $query = $this->db->prepare('INSERT INTO temporadas(id_serie, num_temporada, cant_capitulos) VALUES(?,?,?)');
+        $query->execute([$idSerie,$season,$chapters]);
+
+        return $this->db->lastInserId();
+        }
+    }
+
+    public function deleteTemporada($id){
+        $query = $this->db->prepare('DELETE FROM temporadas WHERE id_temporada = ?');
+        $query->execute([$id]);
+    }
 
     }
 ?>

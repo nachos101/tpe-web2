@@ -11,5 +11,12 @@
         function showTemporadaByID($temporada, $error, $user){
             require_once '././templates/temporada.phtml';
         }
+        function showTemporadasABM($temporadas,$error,$user){
+            require_once '././templates/panel_temporadas.phtml';
+        }
+            public function showError($error, $user) {
+        echo "<h1>$error</h1>";
+    }
+
     }
 ?>  
