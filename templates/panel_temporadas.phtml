@@ -1,6 +1,8 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <div>
+    <section class="editOrDelete">
+    <h4>Editar o Eliminar una temporada</h4>
     <table>
         <tr>
             <td>num_temporada</td>
@@ -17,10 +19,15 @@
             </tr>
         <?php endforeach; ?>
     </table>
+    </section>
     <section class="add_temporada">
+    <h4>Añadir una nueva temporada</h4>
     <form action="addTemporada" method="post">
-        <label>Nombre de la serie</label>
-        <input type="text" name="name"></br>
+        <select name="name">
+            <?php foreach($series as $serie):?>
+            <option value=<?=$serie->titulo?>><?=$serie->titulo?></option>
+            <?php endforeach; ?>
+        </select></br>
         <label>Numero de temporada</label>
         <input type="text" name="num_temporada"></br>    
         <label>Cantidad de capitulos</label>

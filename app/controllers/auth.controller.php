@@ -24,7 +24,7 @@ class AuthController{
         $password = $_POST['password'];
 
         $userFromDB = $this->userModel->getByUser($user);
-        if($userFromDB /*&& password_verify($password, $userFromDB->password)*/) {
+        if($userFromDB && password_verify($password, $userFromDB->password)) {
             $_SESSION['user_id'] = $userFromDB->ID;
             $_SESSION['user_name'] = $userFromDB->user_name;
             header("Location: ".BASE_URL."home");

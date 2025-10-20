@@ -33,7 +33,8 @@
 
         public function showMenuABM($request){
             $temporadas = $this->Model->getAllTemporadas();
-            $this->View->showTemporadasABM($temporadas,"", $request->user);
+            $series = $this->modelSerie->getAllSeries();
+            $this->View->showTemporadasABM($temporadas,$series,"", $request->user);
         }
 
         public function addTemporada($request){
