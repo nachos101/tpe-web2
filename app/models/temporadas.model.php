@@ -40,13 +40,18 @@
         $query = $this->db->prepare('INSERT INTO temporadas(id_serie, num_temporada, cant_capitulos) VALUES(?,?,?)');
         $query->execute([$idSerie,$season,$chapters]);
 
-        return $this->db->lastInserId();
+        return $this->db->lastInsertId();
         }
     }
 
     public function deleteTemporada($id){
         $query = $this->db->prepare('DELETE FROM temporadas WHERE id_temporada = ?');
         $query->execute([$id]);
+    }
+
+    public function updateTemporada($id_temporada,$id_serie,$season,$chapters){
+        $query = $this->db->prepare('UPDATE temporadas SET num_temporada = ?,cant_capitulos = ? WHERE id_temporada = ? AND id_serie = ?');
+        $query->execute([$season,$chapters,$id_temporada,$id_serie]);
     }
 
     }

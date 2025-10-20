@@ -58,32 +58,10 @@ switch ($params[0]) {
             $controller->showTemporadas($request);
         }
         break;
-/* tasks? */
-    case 'nueva':
-        $request = (new GuardMiddleware())->run($request);
-        $controller = new TaskController();
-        $controller->addTask($request);
-        break;
-    case 'eliminar':
-        $request = (new GuardMiddleware())->run($request);
-        $controller = new TaskController();
-        $request->id = $params[1];
-        $controller->removeTask($request);
-        break;
-    case 'finalizar':
-        $request = (new GuardMiddleware())->run($request);
-        $controller = new TaskController();
-        $request->id = $params[1];
-        $controller->finalizeTask($request);
-        break;
 /* ABM series */
     case 'panel_admin':
         $controller = new HomeController();
         $controller->ABM($request);
-        break;
-    case 'administrarTemporadas':
-        $controller = new TemporadasController();
-        $controller->showMenuABM($request);
         break;
     case 'addSerie':
         $request = (new GuardMiddleware())->run($request);
@@ -106,6 +84,11 @@ switch ($params[0]) {
         }
         $controller->deleteSerie($serieId,$request);
         break;
+/* ABM temporadas */
+    case 'administrarTemporadas':
+        $controller = new TemporadasController();
+        $controller->showMenuABM($request);
+        break;    
     case 'addTemporada':
         $request = (new GuardMiddleware())->run($request);
         $controller = new TemporadasController();
@@ -120,8 +103,9 @@ switch ($params[0]) {
     case 'editTemporada':
         $request = (new GuardMiddleware())->run($request);
         $controller = new TemporadasController();
-        $request->id = params[1];
-        var_dump("hola");
+        if (isset($params[1])){
+            $request->id = $params[1];
+        }
         $controller->editTemporada($request);
         break;
 /* Manejo de sesion */

@@ -1,0 +1,11 @@
+<?php require_once 'layout/header.phtml' ?>
+
+    <form action="editTemporada/<?= $temporada->id_temporada?>" method="POST">
+        <label>Numero de temporada</label>
+        <input type="text" name="num_temporada" value=<?=$temporada->num_temporada?>></br>    
+        <label>Cantidad de capitulos</label>
+        <input type="text" name="cant_capitulos" value=<?=$temporada->cant_capitulos?>></br>
+        <button type="submit">AGREGAR</button>
+    </form>
+
+<?php require_once 'layout/footer.phtml' ?>

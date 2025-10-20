@@ -14,9 +14,13 @@
         function showTemporadasABM($temporadas,$error,$user){
             require_once '././templates/panel_temporadas.phtml';
         }
-            public function showError($error, $user) {
+        function showError($error, $user) {
         echo "<h1>$error</h1>";
     }
+
+        function showFormEdit($temporada,$error,$user){
+            require_once '././templates/form_temporadas_edit.phtml';
+        }
 
     }
 ?>  

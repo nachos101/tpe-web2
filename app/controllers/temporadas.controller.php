@@ -55,14 +55,14 @@
             
             $add = $this->Model->insertTemporada($idSerie,$season,$chapters);
             
-            /*if(!$add){
+            if(!$add){
                 return $this->View->showError('Error la insertar tarea', $request->user);
-            }*/
+            }
 
             header('Location: ' . BASE_URL);
         }   
            public function deleteTemporada($request){
-            $id = $request->id;
+            $id_season = $request->id;
             $season = $this->Model->getTemporada($id);
             if (!$season){
                 return $this->View->showError('Error no existe esa temporada', $request->user);
@@ -70,6 +70,25 @@
 
             $this->Model->deleteTemporada($id);
             header('Location: ' . BASE_URL);
+           }
+
+           public function editTemporada($request){
+            $id_season = $request->id;
+            $season = $this->Model->getTemporada($id_season);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (!empty($_POST['num_temporada'])) {
+                //todos los campos tienen datos
+                $seasons = $_POST['num_temporada'];
+                $chapters = $_POST['cant_capitulos'];
+                $id_serie = $season->id_serie;
+                $this->Model->updateTemporada($id_season,$id_serie,$seasons,$chapters);
+                header('Location: ' . BASE_URL);
+
+            }else{
+                $this->View->showError('Error: faltan campos obligatorios', $request->user);
+            }
+            }
+            $this->View->showFormEdit($season,"",$request->user);
            }
     }
 
