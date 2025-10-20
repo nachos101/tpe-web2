@@ -1,13 +1,30 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <div>
-    <?php
-    $n= 1;
-        foreach ($temporadas as $temporada) {
-            echo "Temporada N° <a href='temporadas/$temporada->id_temporada'>".$n."</a></br>";
-            $n++;   
-        }
-    ?>
+    <table>
+        <tr>
+            <td>SERIE</td>
+            <td>NUM_TEMPORADA</td>
+            <td>CANT_CAP</td>
+            <td>RESUMEN</td>
+            <td>ACCION</td>
+        </tr>
+        <?php foreach ($temporadas as $temporada):?>
+        <tr>
+            <?php foreach ($series as $serie): ?>
+            <?php if ($serie->id_serie === $temporada->id_serie): ?>
+            <td><?=$serie->titulo?></td>
+            <?php endif;?>
+            <?php endforeach;?>
+            <td><?=$temporada->num_temporada?></td>
+            <td><?=$temporada->cant_capitulos?></td>
+            <td><?=$temporada->resumen?></td>
+            <td><a href='temporadas/<?=$temporada->id_temporada?>'>Ver Detalle</a></td> 
+            <?php $n++;?>
+        </tr>
+            <?php endforeach; ?>
+    </table>
+    
     <a href="home">VOLVER</a>
 </div>
 

@@ -1,18 +1,34 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <div>
-    <?php
-        $n = 1;
-        echo "Genero " . $serie->genero . '</br>';
-            echo "Cant temporadas " . $serie->cant_temporadas . '</br>';
-            echo "Sinopsis " . $serie->sinopsis . '</br>';
-            echo "Clasificacion +" . $serie->clasificación . '</br>';
-        foreach ($temporadas as $temporada) {
-            echo "Temporada N° <a href='temporadas/$temporada->id_temporada'>".$n."</a></br>";
-            $n++;
-        }
-    ?>
-    <a href="list_series">VOLVER</a>
+    <?php $n=1;?>
+        <p> 
+            <h3><?=$serie->titulo?></h3></br>
+            Genero <?=$serie->genero?> </br>
+            Cant_temporadas <?=$serie->cant_temporadas?></br>
+            Sinopsis <?=$serie->sinopsis?></br>
+            Clasificacion +<?=$serie->clasificación?></br>
+        </p>
 </div>
+<div> 
+    <table>
+        <tr>
+            <td>NUM_TEMPORADA</td>
+            <td>CANT_CAP</td>
+            <td>RESUMEN</td>
+            <td>ACCION</td>
+        </tr>
+        <?php foreach ($temporadas as $temporada):?>
+        <tr>
+            <td><?=$temporada->num_temporada?></td>
+            <td><?=$temporada->cant_capitulos?></td>
+            <td><?=$temporada->resumen?></td>
+            <td><a href='temporadas/<?=$temporada->id_temporada?>'>Ver Detalle</a></td> 
+            <?php $n++;?>
+        </tr>
+            <?php endforeach; ?>
+    </table>
+</div>
+<a href="list_series">VOLVER</a>
 
 <?php require_once 'layout/footer.phtml' ?>

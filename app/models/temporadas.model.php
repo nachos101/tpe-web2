@@ -32,13 +32,13 @@
         return $temporada;
     }
     
-    public function insertTemporada($idSerie,$season,$chapters){
+    public function insertTemporada($idSerie,$season,$chapters,$resumen){
         $query = $this->db->prepare('SELECT * FROM temporadas WHERE id_serie = ? AND num_temporada = ?');
         $query->execute([$idSerie,$season]);
         $control = $query->fetch(PDO::FETCH_OBJ);
         if (empty($control)){
-        $query = $this->db->prepare('INSERT INTO temporadas(id_serie, num_temporada, cant_capitulos) VALUES(?,?,?)');
-        $query->execute([$idSerie,$season,$chapters]);
+        $query = $this->db->prepare('INSERT INTO temporadas(id_serie, num_temporada, cant_capitulos, resumen) VALUES(?,?,?,?)');
+        $query->execute([$idSerie,$season,$chapters,$resumen]);
 
         return $this->db->lastInsertId();
         }
@@ -49,9 +49,9 @@
         $query->execute([$id]);
     }
 
-    public function updateTemporada($id_temporada,$id_serie,$season,$chapters){
-        $query = $this->db->prepare('UPDATE temporadas SET num_temporada = ?,cant_capitulos = ?,id_serie = ? WHERE id_temporada = ?');
-        $query->execute([$season,$chapters,$id_serie,$id_temporada]);
+    public function updateTemporada($id_temporada,$id_serie,$season,$chapters,$resumen){
+        $query = $this->db->prepare('UPDATE temporadas SET num_temporada = ?,cant_capitulos = ?,id_serie = ?,resumen = ? WHERE id_temporada = ?');
+        $query->execute([$season,$chapters,$id_serie,$resumen,$id_temporada]);
     }
 
     }

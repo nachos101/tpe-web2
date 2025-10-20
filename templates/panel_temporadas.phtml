@@ -8,6 +8,7 @@
             <td>SERIE QUE PERTENECE</td>
             <td>num_temporada</td>
             <td>cant_capitulos</td>
+            <td>resumen</td>
             <td>ACCION 1</td>
             <td>ACCION 2</td>
         </tr>
@@ -21,6 +22,7 @@
             <?php endforeach;?>
             <td><?= $temporada->num_temporada;?></td>
             <td><?= $temporada->cant_capitulos;?></td>
+            <td><?= $temporada->resumen;?></td>
             <td><a href="editTemporada/<?= $temporada->id_temporada?>">EDITAR</a></td>
             <td><a href="deleteTemporada/<?=$temporada->id_temporada?>">ELIMINAR</a></td>
             </tr>
@@ -39,6 +41,9 @@
         <input type="text" name="num_temporada"></br>    
         <label>Cantidad de capitulos</label>
         <input type="text" name="cant_capitulos"></br>
+        <label>Resumen</label>
+        <textarea name="resumen"></textarea></br>
+        <!--<input type="text" name="resumen"></br>-->
         <button type="submit">AGREGAR</button>
     </form>
 </section>

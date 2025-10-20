@@ -15,15 +15,15 @@
         public function showTemporadas($request){
             //traigo las temporadas de la serie y con la View llamo al metodo que las muestra
             $temporadas = $this->Model->getAllTemporadas();
-
-            $this->View->showAllTemporadas($temporadas,"", $request->user);
+            $series = $this->modelSerie->getAllSeries();
+            $this->View->showAllTemporadas($temporadas,$series,"", $request->user);
         }
 
         public function showTemporadaByID($id,$request){
             //hago lo mismo que en showAllTemporadas pero aca solo traigo una y muestro una
             $temporada = $this->Model->getTemporada($id);
             if (empty($temporada)){
-                return showError();
+                return showError("No hay temporada",$request->user);
             }
             $idSerie = $temporada->id_serie;
             $serie = $this->modelSerie->getSerie($idSerie);
@@ -41,20 +41,23 @@
             if (!isset($_POST['name']) || empty($_POST['name'])){
                 return $this->View->showError('falta completar el nombre de la serie',$request->user);
             }
-                        if (!isset($_POST['num_temporada']) || empty($_POST['num_temporada'])){
+            if (!isset($_POST['num_temporada']) || empty($_POST['num_temporada'])){
                 return $this->View->showError('falta completar el numero de temporada de la serie',$request->user);
             }
-                        if (!isset($_POST['cant_capitulos']) || empty($_POST['cant_capitulos'])){
+            if (!isset($_POST['cant_capitulos']) || empty($_POST['cant_capitulos'])){
                 return $this->View->showError('falta completar la cantidad de capitulos de la serie',$request->user);
+            }
+           if (!isset($_POST['resumen']) || empty($_POST['resumen'])){
+                return $this->View->showError('falta completar el resumen de la serie',$request->user);
             }
             $name = $_POST['name'];
             $season = $_POST['num_temporada'];
             $chapters = $_POST['cant_capitulos'];
+            $resumen = $_POST['resumen'];
             $serie = $this->modelSerie->getSerieByName($name);
             $idSerie = $serie->id_serie;
             
-            
-            $add = $this->Model->insertTemporada($idSerie,$season,$chapters);
+            $add = $this->Model->insertTemporada($idSerie,$season,$chapters,$resumen);
             
             if(!$add){
                 return $this->View->showError('Error la insertar tarea', $request->user);
@@ -78,12 +81,14 @@
             $season = $this->Model->getTemporada($id_season);
             $series = $this->modelSerie->getAllSeries();
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            if (!empty($_POST['num_temporada'])) {
+            if (!empty($_POST['num_temporada']) && !empty($_POST['cant_capitulos']) 
+                && !empty($_POST['name']) && !empty($_POST['resumen'])) {
                 //todos los campos tienen datos
                 $seasons = $_POST['num_temporada'];
                 $chapters = $_POST['cant_capitulos'];
                 $id_serie = $_POST['name'];
-                $this->Model->updateTemporada($id_season,$id_serie,$seasons,$chapters);
+                $resumen = $_POST['resumen'];
+                $this->Model->updateTemporada($id_season,$id_serie,$seasons,$chapters,$resumen);
                 header('Location: ' . BASE_URL);
 
             }else{
