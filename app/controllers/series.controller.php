@@ -29,35 +29,67 @@ class SeriesController{
         $this->view->showSerieByID($serie,$temporada,"", $request->user);
     }
 
-
     public function showSerieByGenre($genre,$request){
         $serie = $this->model->getSerieByGenre($genre);
         $this->view->showSeriebyGenre($serie,"", $request->user);
     }
 
     function addSerie($request){
-        if (isset($_POST['title'], $_POST['genre'],
-        $_POST['synopsis'], $_POST['age_rating'])){
-            $title = $_POST['title'];
-            $genre = $_POST['genre'];
-            $synopsis = $_POST['synopsis'];
-            $ageR = $_POST['age_rating'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //uso empty en lugar de isset porque este ultimo acepta espacios en blanco
+            if (!empty($_POST['title']) &&
+            !empty($_POST['genre']) &&
+            !empty($_POST['synopsis']) &&
+            !empty($_POST['age_rating'])&&
+            !empty($_POST['img'])){
+                //todos los campos tienen datos
+                $title = $_POST['title'];
+                $genre = $_POST['genre'];
+                $seasons = $_POST['seasons'];
+                $synopsis = $_POST['synopsis'];
+                $ageR = $_POST['age_rating'];
+                $img = $_POST['img'];
+                
+                $this->model->insertSerie($title, $genre, $seasons, $synopsis, $ageR, $img);
+                $this->view->showMsg('Serie agregada con exito', $request->user);
 
-            $this->model->insertSerie($title, $genre, $synopsis, $ageR);
-
-        }else{
-            $this->view->showError('Error: faltan campos obligatorios');
+            }else{
+                $this->view->showError('Error: faltan campos obligatorios', $request->user);
+            }
         }
-        header('Location: ' . BASE_URL);
-        exit();
+        $this->view->showFormSeries("", $request->user);
     }
 
-    function editSerie($request){
+    function editSerie($serieId, $request){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
+            if (!empty($_POST['title']) &&
+            !empty($_POST['genre']) &&
+            !empty($_POST['synopsis']) &&
+            !empty($_POST['age_rating'])&&
+            !empty($_POST['img'])){
+                //todos los campos tienen datos
+                $title = $_POST['title'];
+                $genre = $_POST['genre'];
+                $seasons = $_POST['seasons'];
+                $synopsis = $_POST['synopsis'];
+                $ageR = $_POST['age_rating'];
+                $img = $_POST['img'];
+                
+                $this->model->updateSerie($serieId, $title, $genre, $seasons, $synopsis, $ageR, $img);
+                $this->view->showMsg('Serie actualizada con exito', $request->user);
+
+            }else{
+                $this->view->showError('Error: faltan campos obligatorios', $request->user);
+            }
+        }
+        $serie = $this->model->getSerie($serieId);
+        $this->view->showFormEdit($serie, $request->user);
     }
 
-    function deleteSerie($serie){
-        
+    function deleteSerie($serieId, $request){
+        $this->model->deleteSerie($serieId);
+        $this->view->showMsg('Serie eliminada con exito', $request->user);
     }
 
 }
