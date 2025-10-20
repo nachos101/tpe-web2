@@ -5,6 +5,7 @@
     <h4>Editar o Eliminar una temporada</h4>
     <table>
         <tr>
+            <td>SERIE QUE PERTENECE</td>
             <td>num_temporada</td>
             <td>cant_capitulos</td>
             <td>ACCION 1</td>
@@ -12,6 +13,12 @@
         </tr>
         <?php foreach ($temporadas as $temporada): ?> 
             <tr>
+            
+            <?php foreach ($series as $serie): ?>
+            <?php if ($serie->id_serie === $temporada->id_serie): ?>
+            <td><?=$serie->titulo?></td>
+            <?php endif;?>
+            <?php endforeach;?>
             <td><?= $temporada->num_temporada;?></td>
             <td><?= $temporada->cant_capitulos;?></td>
             <td><a href="editTemporada/<?= $temporada->id_temporada?>">EDITAR</a></td>

@@ -76,12 +76,13 @@
            public function editTemporada($request){
             $id_season = $request->id;
             $season = $this->Model->getTemporada($id_season);
+            $series = $this->modelSerie->getAllSeries();
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if (!empty($_POST['num_temporada'])) {
                 //todos los campos tienen datos
                 $seasons = $_POST['num_temporada'];
                 $chapters = $_POST['cant_capitulos'];
-                $id_serie = $season->id_serie;
+                $id_serie = $_POST['name'];
                 $this->Model->updateTemporada($id_season,$id_serie,$seasons,$chapters);
                 header('Location: ' . BASE_URL);
 
@@ -89,7 +90,7 @@
                 $this->View->showError('Error: faltan campos obligatorios', $request->user);
             }
             }
-            $this->View->showFormEdit($season,"",$request->user);
+            $this->View->showFormEdit($season,$series,"",$request->user);
            }
     }
 

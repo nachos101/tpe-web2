@@ -1,6 +1,11 @@
 <?php require_once 'layout/header.phtml' ?>
 
     <form action="editTemporada/<?= $temporada->id_temporada?>" method="POST">
+        <select name="name">
+            <?php foreach($series as $serie):?>
+            <option value=<?=$serie->id_serie?>><?=$serie->titulo?></option>
+            <?php endforeach; ?>
+        </select></br>
         <label>Numero de temporada</label>
         <input type="text" name="num_temporada" value=<?=$temporada->num_temporada?>></br>    
         <label>Cantidad de capitulos</label>

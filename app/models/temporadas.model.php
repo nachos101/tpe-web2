@@ -50,8 +50,8 @@
     }
 
     public function updateTemporada($id_temporada,$id_serie,$season,$chapters){
-        $query = $this->db->prepare('UPDATE temporadas SET num_temporada = ?,cant_capitulos = ? WHERE id_temporada = ? AND id_serie = ?');
-        $query->execute([$season,$chapters,$id_temporada,$id_serie]);
+        $query = $this->db->prepare('UPDATE temporadas SET num_temporada = ?,cant_capitulos = ?,id_serie = ? WHERE id_temporada = ?');
+        $query->execute([$season,$chapters,$id_serie,$id_temporada]);
     }
 
     }
