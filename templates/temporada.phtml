@@ -1,10 +1,10 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <div>
-    <?php
-        echo "Esta temporada tiene ".$temporada->cant_capitulos." capitulos</br>";
-        echo "<a href=temporadas>Volver</a>";
-    ?>
+    <p>
+        Esta temporada tiene <?=$temporada->cant_capitulos?> capitulos</br>
+        <a href=temporadas>Volver</a>
+    </p>
 </div>
 
 <?php require_once 'layout/footer.phtml' ?>

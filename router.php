@@ -86,6 +86,7 @@ switch ($params[0]) {
         break;
 /* ABM temporadas */
     case 'administrarTemporadas':
+        $request = (new GuardMiddleware())->run($request);
         $controller = new TemporadasController();
         $controller->showMenuABM($request);
         break;    
