@@ -15,9 +15,3 @@ footer {
   object-fit: contain;
   object-position: center;
 }
-
-
-img {
-    max-height: 50px;
-    width: 30px;
-}
