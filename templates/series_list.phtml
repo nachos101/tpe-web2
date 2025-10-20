@@ -1,21 +1,22 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <section class="show_series">
+    <div class="row">
     <?php if ($user): ?>
         <a href="addSerie">NUEVA SERIE</a>
     <?php endif; ?>
     <?php foreach($series as $s): ?>
-        <ul>
-            <li>
-                <a href="list_series/<?= $s->id_serie ?>"><?= $s->titulo ?></a><br>
-                <img src="<?= $s->img ?>" alt="<?= $s->titulo ?>">
+        <div class="col-sm-4">
+
+            <a href="list_series/<?= $s->id_serie ?>"><?= $s->titulo ?></a><br>
+                <img src="<?= $s->img ?>" class="img-responsive" style="width:100%" alt="<?= $s->titulo ?>">
                 <?php if ($user): ?>
                     <a href="editSerie/<?=$s->id_serie?>">EDITAR</a>
                     <a href="deleteSerie/<?=$s->id_serie?>">ELIMINAR</a>
                 <?php endif; ?>
-            </li>
-        </ul>
+                </div>
     <?php endforeach; ?>
+    </div>
 </section>
 
 <?php require_once 'layout/footer.phtml' ?>
