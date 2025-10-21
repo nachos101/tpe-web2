@@ -22,7 +22,7 @@ class Model
         $query = $this->db->query('SHOW TABLES');
         $tables = $query->fetchAll();
         if (count($tables) == 0) {
-          $password = '2a$12$ynSzmTb00w9e9uSCCX2oDug/0IIcKUmLL9Y6boWy0YnMvTB4WRuxK';
+          $password = '$2a$12$sueSEU0qRVxmHEMjz7eMae4pkFdf20gdVUeaH8Yd1BdC0kBMNvLtG';
           $sql = <<<END
             
 CREATE TABLE `capitulos` (
