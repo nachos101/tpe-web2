@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-09-2025 a las 17:30:57
+-- Tiempo de generación: 21-10-2025 a las 15:27:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tpe_web2`
+-- Base de datos: `tpe_web2s`
 --
 
 -- --------------------------------------------------------
@@ -87,18 +87,19 @@ CREATE TABLE `series` (
   `id_serie` int(255) NOT NULL,
   `titulo` varchar(1000) NOT NULL,
   `genero` varchar(1000) NOT NULL,
-  `cant. de temporadas` int(255) NOT NULL,
+  `cant_temporadas` int(255) NOT NULL,
   `sinopsis` text NOT NULL,
-  `clasificación` int(99) NOT NULL
+  `clasificación` int(99) NOT NULL,
+  `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `series`
 --
 
-INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant. de temporadas`, `sinopsis`, `clasificación`) VALUES
-(1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16),
-(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13);
+INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `img`) VALUES
+(1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16, 'https://hips.hearstapps.com/hmg-prod/images/season-5-pictured-ed-helms-as-andy-bernard-phyllis-smith-as-news-photo-138448895-1565378733.jpg'),
+(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85');
 
 -- --------------------------------------------------------
 
@@ -110,17 +111,46 @@ CREATE TABLE `temporadas` (
   `id_temporada` int(255) NOT NULL,
   `id_serie` int(255) NOT NULL,
   `num_temporada` int(255) NOT NULL,
-  `cant_capitulos` int(255) NOT NULL
+  `cant_capitulos` int(255) NOT NULL,
+  `resumen` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `temporadas`
 --
 
-INSERT INTO `temporadas` (`id_temporada`, `id_serie`, `num_temporada`, `cant_capitulos`) VALUES
-(1, 1, 1, 6),
-(2, 1, 2, 22),
-(3, 2, 1, 8);
+INSERT INTO `temporadas` (`id_temporada`, `id_serie`, `num_temporada`, `cant_capitulos`, `resumen`) VALUES
+(1, 1, 1, 9, 'oaaaa'),
+(2, 1, 2, 22, 'oaaaa'),
+(3, 2, 1, 8, 'oaaaa'),
+(4, 1, 3, 22, 'oaaaa'),
+(5, 2, 4, 22, 'oaaaa'),
+(6, 1, 5, 22, 'oaaaa'),
+(7, 1, 6, 20, 'oaaaa'),
+(8, 1, 7, 24, 'oaaaa'),
+(9, 1, 8, 19, 'oaaaa'),
+(11, 1, 9, 15, 'oaaaa'),
+(12, 1, 10, 10, 'oaaaa'),
+(13, 1, 5, 22, 'OAA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `ID` int(255) NOT NULL,
+  `user_name` varchar(200) NOT NULL,
+  `password` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`ID`, `user_name`, `password`) VALUES
+(1, 'webadmin', '$2a$12$ynSzmTb00w9e9uSCCX2oDug/0IIcKUmLL9Y6boWy0YnMvTB4WRuxK');
 
 --
 -- Índices para tablas volcadas
@@ -147,6 +177,12 @@ ALTER TABLE `temporadas`
   ADD KEY `id_serie` (`id_serie`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -166,7 +202,13 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT de la tabla `temporadas`
 --
 ALTER TABLE `temporadas`
-  MODIFY `id_temporada` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_temporada` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
