@@ -6,8 +6,8 @@
         con información detallada, recomendaciones personalizadas y las últimas novedades del mundo del entretenimiento.
         ¡Todo lo que necesitás para disfrutar tus series en un solo lugar!
     </p>
-    <a href="list_series">Ver Series</a>
-    <a href="temporadas">Ver Temporadas</a>
+    <a class="btn btn-primary" href="list_series">Ver Series</a>
+    <a class="btn btn-primary" href="temporadas">Ver Temporadas</a>
 </div>
 
 <?php require_once 'layout/footer.phtml' ?>

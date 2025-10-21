@@ -1,14 +1,17 @@
 <?php require_once 'layout/header.phtml' ?>
 
 <div>
-    <table>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <td>SERIE</td>
-            <td>NUM_TEMPORADA</td>
-            <td>CANT_CAP</td>
-            <td>RESUMEN</td>
-            <td>ACCION</td>
+            <th scope="col">SERIE</th>
+            <th scope="col">NUM_TEMPORADA</th>
+            <th scope="col">CANT_CAP</th>
+            <th scope="col">RESUMEN</th>
+            <th scope="col">ACCION</th>
         </tr>
+        </thead>
+        <tbody>
         <?php foreach ($temporadas as $temporada):?>
         <tr>
             <?php foreach ($series as $serie): ?>
@@ -23,6 +26,7 @@
             <?php $n++;?>
         </tr>
             <?php endforeach; ?>
+            </tbody>
     </table>
     
     <a href="home">VOLVER</a>

@@ -1,52 +1,81 @@
 <?php require_once 'layout/header.phtml' ?>
 
-<div>
-    <section class="editOrDelete">
-    <h4>Editar o Eliminar una temporada</h4>
-    <table>
-        <tr>
-            <td>SERIE QUE PERTENECE</td>
-            <td>num_temporada</td>
-            <td>cant_capitulos</td>
-            <td>resumen</td>
-            <td>ACCION 1</td>
-            <td>ACCION 2</td>
-        </tr>
-        <?php foreach ($temporadas as $temporada): ?> 
-            <tr>
-            
-            <?php foreach ($series as $serie): ?>
-            <?php if ($serie->id_serie === $temporada->id_serie): ?>
-            <td><?=$serie->titulo?></td>
-            <?php endif;?>
-            <?php endforeach;?>
-            <td><?= $temporada->num_temporada;?></td>
-            <td><?= $temporada->cant_capitulos;?></td>
-            <td><?= $temporada->resumen;?></td>
-            <td><a href="editTemporada/<?= $temporada->id_temporada?>">EDITAR</a></td>
-            <td><a href="deleteTemporada/<?=$temporada->id_temporada?>">ELIMINAR</a></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+<div class="container my-5">
+
+    <!-- Sección de edición -->
+    <section class="editOrDelete mb-5">
+        <h3 class="fw-bold mb-4 text-center text-dark">Editar o Eliminar una temporada</h3>
+
+        <div class="table-responsive shadow-sm">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>SERIE</th>
+                        <th># TEMPORADA</th>
+                        <th>CAPÍTULOS</th>
+                        <th>RESUMEN</th>
+                        <th colspan="2" class="text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($temporadas as $temporada): ?> 
+                        <tr>
+                            <?php foreach ($series as $serie): ?>
+                                <?php if ($serie->id_serie === $temporada->id_serie): ?>
+                                    <td><?= htmlspecialchars($serie->titulo) ?></td>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <td><?= htmlspecialchars($temporada->num_temporada) ?></td>
+                            <td><?= htmlspecialchars($temporada->cant_capitulos) ?></td>
+                            <td><?= htmlspecialchars($temporada->resumen) ?></td>
+                            <td class="text-center">
+                                <a href="editTemporada/<?= $temporada->id_temporada ?>" class="btn btn-warning btn-sm">Editar</a>
+                            </td>
+                            <td class="text-center">
+                                <a href="deleteTemporada/<?= $temporada->id_temporada ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
+
+    <!-- Sección para añadir -->
     <section class="add_temporada">
-    <h4>Añadir una nueva temporada</h4>
-    <form action="addTemporada" method="post">
-        <select name="name">
-            <?php foreach($series as $serie):?>
-            <option value=<?=$serie->titulo?>><?=$serie->titulo?></option>
-            <?php endforeach; ?>
-        </select></br>
-        <label>Numero de temporada</label>
-        <input type="text" name="num_temporada"></br>    
-        <label>Cantidad de capitulos</label>
-        <input type="text" name="cant_capitulos"></br>
-        <label>Resumen</label>
-        <textarea name="resumen"></textarea></br>
-        <!--<input type="text" name="resumen"></br>-->
-        <button type="submit">AGREGAR</button>
-    </form>
-</section>
+        <h4 class="fw-semibold mb-3 text-center">Añadir una nueva temporada</h4>
+
+        <form action="addTemporada" method="post" class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Serie</label>
+                <select name="name" class="form-select" required>
+                    <?php foreach($series as $serie): ?>
+                        <option value="<?= htmlspecialchars($serie->titulo) ?>"><?= htmlspecialchars($serie->titulo) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Número de temporada</label>
+                <input type="number" name="num_temporada" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Cantidad de capítulos</label>
+                <input type="number" name="cant_capitulos" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Resumen</label>
+                <textarea name="resumen" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4">Agregar</button>
+            </div>
+        </form>
+    </section>
+
 </div>
 
 <?php require_once 'layout/footer.phtml' ?>
