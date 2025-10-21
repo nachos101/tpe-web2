@@ -46,9 +46,9 @@
         <form action="addTemporada" method="post" class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
             <div class="mb-3">
                 <label class="form-label fw-semibold">Serie</label>
-                <select name="name" class="form-select" required>
+                <select name="idSerie" class="form-select" required>
                     <?php foreach($series as $serie): ?>
-                        <option value="<?= htmlspecialchars($serie->titulo) ?>"><?= htmlspecialchars($serie->titulo) ?></option>
+                        <option value="<?= htmlspecialchars($serie->id_serie) ?>"><?= htmlspecialchars($serie->titulo) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

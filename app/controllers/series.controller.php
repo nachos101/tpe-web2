@@ -25,13 +25,22 @@ class SeriesController{
 
     public function showSerieByID($idSerie,$request){
         $serie = $this->model->getSerie($idSerie);
+        if (!empty($serie)){
         $temporada = $this->temporadasModel->getTemporadas($idSerie);
         $this->view->showSerieByID($serie,$temporada,"", $request->user);
+        }
+        else {
+            $this->view->showError('Error: no existe la serie', $request->user);
+        }
     }
 
     public function showSerieByGenre($genre,$request){
         $serie = $this->model->getSerieByGenre($genre);
+        if (!empty($serie)){
         $this->view->showSeriebyGenre($serie,"", $request->user);
+        } else {
+            $this->view->showError('Error: no existe la serie', $request->user);
+        }
     }
 
     function addSerie($request){
@@ -61,6 +70,7 @@ class SeriesController{
     }
 
     function editSerie($serieId, $request){
+        $serie = $this->model->getSerie($serieId);
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
             if (!empty($_POST['title']) &&
@@ -83,13 +93,27 @@ class SeriesController{
                 $this->view->showError('Error: faltan campos obligatorios', $request->user);
             }
         }
-        $serie = $this->model->getSerie($serieId);
+        if (!empty($serie)){
         $this->view->showFormEdit($serie, $request->user);
+        }
+        else{
+            $this->view->showError('Error: no existe la serie', $request->user);            
+        }
     }
 
     function deleteSerie($serieId, $request){
-        $this->model->deleteSerie($serieId);
-        $this->view->showMsg('Serie eliminada con exito', $request->user);
+        $serie = $this->model->getSerie($serieId);
+        $temporadas = $this->temporadasModel->getTemporadas($serieId);
+        if (!empty($serie)){
+            if (empty($temporadas)){
+                $this->model->deleteSerie($serieId);
+                $this->view->showMsg('Serie eliminada con exito', $request->user);
+            } else {
+                $this->view->showError('Error: hay temporadas asociadas', $request->user);        
+            }
+        } else {
+                $this->view->showError('Error: no existe la serie', $request->user);     
+        }
     }
 
 }

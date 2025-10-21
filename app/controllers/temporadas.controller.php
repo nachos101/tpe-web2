@@ -38,7 +38,7 @@
         }
 
         public function addTemporada($request){
-            if (!isset($_POST['name']) || empty($_POST['name'])){
+            if (!isset($_POST['idSerie']) || empty($_POST['idSerie'])){
                 return $this->View->showError('falta completar el nombre de la serie',$request->user);
             }
             if (!isset($_POST['num_temporada']) || empty($_POST['num_temporada'])){
@@ -50,12 +50,15 @@
            if (!isset($_POST['resumen']) || empty($_POST['resumen'])){
                 return $this->View->showError('falta completar el resumen de la serie',$request->user);
             }
-            $name = $_POST['name'];
+            $idSerie = $_POST['idSerie'];
             $season = $_POST['num_temporada'];
             $chapters = $_POST['cant_capitulos'];
             $resumen = $_POST['resumen'];
-            $serie = $this->modelSerie->getSerieByName($name);
-            $idSerie = $serie->id_serie;
+            $serie = $this->modelSerie->getSerie($idSerie);
+
+            if (empty($serie)){
+                return $this->View->showError('Error: no existe la serie', $request->user);
+            }
             
             $add = $this->Model->insertTemporada($idSerie,$season,$chapters,$resumen);
             
@@ -95,7 +98,11 @@
                 $this->View->showError('Error: faltan campos obligatorios', $request->user);
             }
             }
+            if (!empty($series)){
             $this->View->showFormEdit($season,$series,"",$request->user);
+            } else{
+                $this->View->showError('Error: no existe la serie', $request->user);
+            }
            }
     }
 

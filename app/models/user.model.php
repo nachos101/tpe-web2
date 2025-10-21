@@ -1,10 +1,11 @@
 <?php 
-class UserModel{
-    private $db;
+require_once './app/models/model.php';
+
+class UserModel extends Model{
 
     function __construct() {
      // 1. abro conexión con la DB
-     $this->db = new PDO('mysql:host=localhost;dbname=tpe_web2s;charset=utf8', 'root', '');
+     parent::__construct(); 
     }
 
     public function get($id) {

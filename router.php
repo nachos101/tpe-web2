@@ -60,6 +60,7 @@ switch ($params[0]) {
         break;
 /* ABM series */
     case 'panel_admin':
+        $request = (new GuardMiddleware())->run($request);
         $controller = new HomeController();
         $controller->ABM($request);
         break;

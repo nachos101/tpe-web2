@@ -1,8 +1,9 @@
 <?php
-    class ModelTemporadas {
+    require_once './app/models/model.php';
+    class ModelTemporadas extends Model {
         function __construct(){
             //constructor basico con la db
-            $this->db = new PDO('mysql:host=localhost;'.'dbname=tpe_web2s;charset=utf8', 'root', '');
+            parent::__construct();
         }
     
 
