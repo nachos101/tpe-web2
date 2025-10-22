@@ -11,10 +11,8 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 Para navegar en este sitio es necesario importar la Base de Datos.  
 1-Abre [phpMyAdmin](http://localhost/phpmyadmin/) en tu navegador.  
 2-Crea una nueva Base de Datos llamada "tpe_web2s".  
-3-Seleccionala y en ella ve a la pestaña **importar**.  
-4-Haz clic en **Seleccionar archivo** y elige el archivo tpe_web2s.sql de este proyecto.  
-5-Presiona **continuar** para importar tablas y datos.  
-6-Disfruta!  
+3-Las tablas se importaran gracias al deploy realizado.
+4-Disfruta!  
 
 Para acceder al **panel de administrador** de esta pagina puedes loguearte como  
 USER: webadmin PASSWORD: admin
